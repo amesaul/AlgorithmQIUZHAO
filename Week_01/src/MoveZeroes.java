@@ -1,3 +1,5 @@
+import com.sun.source.tree.BinaryTree;
+
 public class MoveZeroes {
 
     public void moveZeroes(int[] nums) {
@@ -13,6 +15,7 @@ public class MoveZeroes {
         for (int i = index; i < nums.length; ++i) {
             nums[i] = 0;
         }
+
     }
 
 }

@@ -1,4 +1,4 @@
-import javax.swing.tree.TreeNode;
+package Day1.Day1Review;
 
 public class ListNode {
     int val;
@@ -15,5 +15,4 @@ public class ListNode {
         this.val = val;
         this.next = next;
     }
-
 }
