@@ -5,32 +5,33 @@ import java.util.*;
 
 public class WordLadderWithBFS {
 	public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-		HashSet<String> dict = new HashSet<>(wordList);
-		Queue<String> q = new LinkedList<>();
-		if (!dict.contains(endWord)) return 0;
-		int level = 0;
-		dict.remove(beginWord);
-		q.add(beginWord);
-		while (!q.isEmpty()) {
-			for (int size = q.size(); size > 0; --size) {
-				String cur = q.poll();
-				if (cur.equals(endWord)) return level+1;
-				char[] wordUnit = cur.toCharArray();
-				for (int i = 0 ; i < wordUnit.length ; ++i ){
-					char temp = wordUnit[i];
-					for (char c = 'a'; c<='z';c++) {
-						wordUnit[i] = c ;
-						String s = new String(wordUnit);
-						if (dict.contains(s)) {
-							dict.remove(s);
-							q.add(s);
+		Set<String> list = new HashSet<>(wordList);
+		int count = 0;
+		Queue<String> queue = new LinkedList<>();
+		if (!list.contains(endWord)) return 0;
+		queue.offer(beginWord);
+		while (!queue.isEmpty()) {
+			int size = queue.size();
+			for (int i = 0; i < size; i++) {
+				String cur = queue.poll();
+				if (cur.equals(endWord))
+					return count+1;
+				char[] c = cur.toCharArray();
+				for (int j=0;j<endWord.length();j++){
+					char temp = c[j];
+					for (char t = 'a';t<='z';++t) {
+						c[j]=t;
+						String judge =new String(c);
+						if (list.contains(judge)) {
+							queue.add(judge);
+							list.remove(judge);
 						}
 					}
-					wordUnit[i] =temp;
+					c[j]=temp;
 				}
 			}
-			level++;
+			count++;
 		}
-		return level;
+		return 0;
 	}
 }
