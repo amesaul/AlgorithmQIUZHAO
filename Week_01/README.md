@@ -67,11 +67,11 @@
 ###2.主要实现：
 ###2.1 Node的实现
 
-	    static class Node<K,V> implements Map.Entry<K,V> {
+	    static class Trie.Node<K,V> implements Map.Entry<K,V> {
         	final int hash;
         	final K key;
        	 	V value;
-       		Node<K,V> next;
+       		Trie.Node<K,V> next;
 		}
 其中，Hash由HashMap重写的hash计算得到，源码如下：
 
@@ -91,13 +91,13 @@ Code:
 
 		final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
                    boolean evict) {
-        Node<K,V>[] tab; Node<K,V> p; int n, i;
+        Trie.Node<K,V>[] tab; Trie.Node<K,V> p; int n, i;
         if ((tab = table) == null || (n = tab.length) == 0)
             n = (tab = resize()).length;
         if ((p = tab[i = (n - 1) & hash]) == null)
             tab[i] = newNode(hash, key, value, null);
         else {
-            Node<K,V> e; K k;
+            Trie.Node<K,V> e; K k;
             if (p.hash == hash &&
                 ((k = p.key) == key || (key != null && key.equals(k))))
                 e = p;
